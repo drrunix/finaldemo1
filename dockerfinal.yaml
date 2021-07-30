@@ -1,0 +1,53 @@
+- hosts: all
+  become: true
+
+  tasks:
+   - name: install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+        
+    - name: installa dependency
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+
+    - name: add GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: add docker repository to apt
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: install docker
+      apt:
+        name: "{{item}}"
+        state: latest
+        update_cache: yes
+      loop:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+
+   - name: install docker module for python
+      pip: 
+         name= docker
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+   - name: getting docker image from docker hub
+      command: docker pull drrunix/tillyrepo:latest 
+
+   - name: stop all dockers if already running
+      shell: sudo docket stop $(sudo docker ps -a -q)
+         
+    - name: stop all dockers if already running
+      shell: docker run -d -p 80:80 --name tillycon drrunix/tillyrepo:latest
