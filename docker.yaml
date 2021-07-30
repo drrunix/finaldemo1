@@ -1,6 +1,6 @@
 - name: install docker
-  hosts: localhost
-  connection: local
+  hosts: all
+  
   tasks:
     - name: installa dipendenze
       apt:
