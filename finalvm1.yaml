@@ -33,7 +33,7 @@
       rules:
         - name: SSH
           protocol: Tcp
-          destination_port_range: *
+          destination_port_range: "*"
           access: Allow
           priority: 1001
           direction: Inbound
