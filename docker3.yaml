@@ -1,0 +1,11 @@
+- hosts: all
+  become: true
+
+  tasks:
+     - name: getting docker image from dockerhub
+       command: sudo docker pull drrunix/tillyrepo:latest
+
+
+     - name: stop all dockers if already running
+       shell: docker run -d -p 80:80 --name tillycon drrunix/tillyrepo:latest
+
