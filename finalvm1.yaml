@@ -37,6 +37,18 @@
           access: Allow
           priority: 1001
           direction: Inbound
+          
+   - name: Create Network Security Group that allows port 8080
+     azure_rm_securitygroup:
+      resource_group: myResourceGroup
+      name: myNetworkSecurityGroup1
+      rules:
+        - name: port 8080
+          protocol: Tcp
+          destination_port_range: 8080
+          access: Allow
+          priority: 100
+          direction: Inbound
   - name: Create virtual network interface card
     azure_rm_networkinterface:
       resource_group: myResourceGroup
