@@ -7,5 +7,5 @@
 
 
      - name: stop all dockers if already running
-       shell: docker run -d -p 80:80 --name tillycon drrunix/tillyrepo:latest
+       shell: docker run -d -p 8080:8080 --name tillycon drrunix/tillyrepo:latest
 
