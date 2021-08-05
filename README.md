@@ -1,2 +1,0 @@
-# ZenkinsVM-S
-ZenkinsVM'S
