@@ -17,5 +17,10 @@ provider "azurerm" {
 resource "azurerm_resource_group" "demo" {
   name     = "vmmaster"
   location = var.location
+  tags = {
+    environment = "Dev"
+    project   = "MyLab"
+    owner     = "RD"
+   }
 }
 
